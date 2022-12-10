@@ -5,7 +5,7 @@ const withLoading = (WrappedComponent) => {
   return (props) => {
     const [data, setData] = useState(null);
     useEffect(() => {
-      props.fetchMetod(props.params).then((res) => setData(res));
+      props.fetchMethod(props.params).then((res) => setData(res));
     }, [props]);
 
     return data ? (

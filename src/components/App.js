@@ -13,10 +13,10 @@ function App() {
       <EntitiesList
         onEntityDetailsClick={onUserClick}
         propsToDisplay={{ name: 'Name', username: 'Username', email: 'Email' }}
-        fetchMetod={fetchUsers}
+        fetchMethod={fetchUsers}
       />
       <EntityDetails
-        fetchMetod={fetchUser}
+        fetchMethod={fetchUser}
         params={userId}
         propsToDisplay={{
           name: 'Name',
