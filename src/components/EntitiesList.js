@@ -1,27 +1,21 @@
-import { useState, useEffect } from 'react'
+import withLoading from './withLoading';
 
-
-function EntitiesList({ onEntityDetailsClick, propsToDisplay, fetchMethod }) {
-  const [entities, setEntities] = useState(null)
-
-  useEffect(() => {
-    fetchMethod()
-      .then(res => { setEntities(res); console.log('Users: ', res) })
-  }, [])
-
+function EntitiesList({ onEntityDetailsClick, propsToDisplay, data }) {
   return (
-    entities ?
-      <ul>
-        {entities.map(entity =>
-          <li key={entity.id}>
-            <button onClick={() => onEntityDetailsClick(entity.id)}>👀</button>
-            {Object.entries(propsToDisplay).map(entry =>
-              <span key={entity[entry[0]]}> {entry[1]}: <strong>{entity[entry[0]]}</strong></span>
-            )}
-          </li>
-        )}
-      </ul> : <p className='center'>Loading...</p>
-  )
+    <ul>
+      {data.map((entity) => (
+        <li key={entity.id}>
+          <button onClick={() => onEntityDetailsClick(entity.id)}>👀</button>
+          {Object.entries(propsToDisplay).map((entry) => (
+            <span key={entity[entry[0]]}>
+              {' '}
+              {entry[1]}: <strong>{entity[entry[0]]}</strong>
+            </span>
+          ))}
+        </li>
+      ))}
+    </ul>
+  );
 }
 
-export default EntitiesList
+export default withLoading(EntitiesList);
